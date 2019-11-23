@@ -3,12 +3,12 @@ $articleText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi e
 
 $articleLink = "./article_full.php";
 
-if (strlen($articleText) > 200) {
-    $articlePreview = mb_strimwidth($articleText, 0, 200, "");
-    $thirdWord = strrpos(substr($articlePreview, 0, strrpos(substr($articlePreview, 0, strrpos($articlePreview, ' ')-1), ' ')-1), ' ');
+if (mb_strlen($articleText, "utf-8") > 200) {
+    $articlePreview = trim(mb_strimwidth($articleText, 0, 200, ""));
+    $thirdWord = strrpos(substr($articlePreview, 0, strrpos(mb_substr($articlePreview, 0, strrpos($articlePreview, ' ')-1, "utf-8"), ' ')-1), ' ');
 
-    $lastThreeWords = substr($articlePreview, $thirdWord+1);
-    $articlePreview = substr($articlePreview, 0, $thirdWord+1);
+    $lastThreeWords = mb_substr($articlePreview, $thirdWord+1);
+    $articlePreview = mb_substr($articlePreview, 0, $thirdWord+1, "utf-8");
 
     $articlePreview = $articlePreview."<a href=\"".$articleLink."\">".$lastThreeWords."..."."</a>";
     echo "<p>".$articlePreview."</p>";
