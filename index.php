@@ -1,7 +1,9 @@
 <?php
-$articleText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi earum amet officia recusandae quae doloribus repellendus atque ipsam eveniet magnam, explicabo nostrum labore non facere delectus dolor voluptate suscipit. Et.Vel dolorum inventore sunt! Labore illum sit accusamus, harum repudiandae ipsam in culpa temporibus eius delectus, provident perspiciatis minus pariatur impedit vero ratione tenetur, quaerat dicta dolore eos numquam fuga!";
+$articleLink = "http://localhost/task_1/article_full.php";
 
-$articleLink = "./article_full.php";
+$articleText = file_get_contents($articleLink);
+
+$articleText = strip_tags($articleText); //удаляем теги из текста на случай, если они будут в статье
 
 if (mb_strlen($articleText, "utf-8") > 200) {
     $articlePreview = trim(mb_strimwidth($articleText, 0, 200, ""));
